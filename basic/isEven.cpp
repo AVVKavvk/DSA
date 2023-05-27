@@ -11,44 +11,35 @@
 using namespace std;
 #define ve vector<int>
 #define pu(n) push_back(n);
-
-int getBinary(int n)
+void isEven(int n)
 {
-    int ans = 0;
-    int i = 0, j = 0;
-    while (n > 0)
+    if (n % 2 == 0)
     {
-        int bit = n &1;
-     
-        ans = ans + bit * pow(10, i++);
-      
-
-        n = n >>1;
+        cout << "even" << endl;
     }
-    return ans;
+    else
+    {
+        cout << "odd" << endl;
+    }
 }
-int getBinary1(int n)
+void isEven1(int n)
 {
-    int ans = 0;
-    int i = 0, j = 0;
-    while (n > 0)
+    if ((n & 1) == 0)
     {
-        int bit = n % 2;
-     
-        ans = ans + bit * pow(10, i++);
-      
-
-        n = n / 2;
+        cout << "even" << endl;
     }
-    return ans;
+    else
+    {
+        cout << "odd" << endl;
+    }
 }
+
 int main()
 {
     int n;
-    cout << "emter n ";
+    cout << "enter n ";
     cin >> n;
-    int binary = getBinary(n);
-    // int binary = getBinary1(n);
-    cout<<binary<<endl;
+    isEven(n);
+    isEven1(n);
     return 0;
 }
