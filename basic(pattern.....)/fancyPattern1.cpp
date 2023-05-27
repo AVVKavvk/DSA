@@ -24,60 +24,35 @@ int main()
     cin >> n;
 
     //* full pyramid with number
-    // for (int i = 0; i < n; i++)
-    // {
-    //     int k = 0;
-    //     for (int j = 0; j < n * 2 - 1; j++)
-    //     {
-    //         if (j < n - i - 1)
-    //         {
-    //             cout << " ";
-    //         }
-
-    //         else if (k < 2 * i + 1)
-    //         {
-    //             cout << "*";
-    //             k++;
-    //         }
-    //         else
-    //         {
-    //             cout << " ";
-    //         }
-    //     }
-    //     cout << endl;
-    // }
+//   for (int i = 0; i < n; i++)
+//     {
+//         for (int j = 0; j < n - i-1; j++)
+//         {
+//             cout << " ";
+//         }
+//         for (int j = 0; j < i+1; j++)
+//         {
+//             cout << "* ";
+//         }
+//         cout<<endl;
+//     }
 
     for (int i = 0; i < n; i++)
     {
-        int k = 0;
-        for (int j = 0; j < n * 2 - 1; j++)
+        for (int j = 0; j < n - i-1; j++)
         {
-            if (j < n - i - 1)
+            cout << " ";
+        }
+        for (int j = 0; j < i + 1; j++)
+        {
+            if (j == i)
             {
-                cout << " ";
-            }
-
-            else if (k < 2 * i + 1)
-            {
-
-                if (k == 2 * i)
-                {
-
-                    cout << i + 1;
-                }
-                else
-                {
-                    cout << i + 1 << "*";
-                }
-                k++;
+                cout << i + 1;
             }
             else
-            {
-                cout << " ";
-            }
+                cout << i + 1 << "*";
         }
         cout << endl;
     }
-
     return 0;
 }
