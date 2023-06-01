@@ -37,9 +37,9 @@ int getPivot(int arr[],int n){
     return s;
 }
 int main() {
-int arr[]={7,8,9,10,3,4};
+int arr[]={7,8,9,10,11,3,4};
 int n=sza(arr);
 int pivot=getPivot(arr,n);
-p(pivot);
+p(arr[pivot]);
 return 0 ;
 }
