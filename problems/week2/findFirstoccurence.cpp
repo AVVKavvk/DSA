@@ -68,7 +68,8 @@ int main()
     auto a1 = lower_bound(arr, arr + size, target);
     p(a1 - arr);
 
+   
 
-    
+    // cout << amxi;
     return 0;
 }
