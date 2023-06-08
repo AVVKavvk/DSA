@@ -22,9 +22,32 @@ using namespace std ;
 #define vei vector<int> 
 #define pu(n) push_back( n); 
  
+void incr(int & b){
+    // b++;
+    b=50;
+}
+ 
+void incr1(int * b){
+    // b++;
+    *b=50;
+}
 
+void incr2(int* & b){
+    b+=2;
+}
 int main() {
-  int *a;
-  cout<<sizeof(a);
+int a=5;
+// ?       incr(a);
+
+//* incr1(&a);
+// p(a);
+
+int *p=&a;
+
+
+cout<<p<<endl;
+incr2(p);
+cout<<p<<endl;
+
 return 0 ;
 }
