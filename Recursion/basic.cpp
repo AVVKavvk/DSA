@@ -73,23 +73,127 @@ int SumOfDigits(int n)
 
 int fibonacci(int n)
 {
-   if(n==1){
-    return 0;
-   }
-   if(n==2){
-    return 1;
-   }
+    if (n == 1)
+    {
+        return 0;
+    }
+    if (n == 2)
+    {
+        return 1;
+    }
 
     int fib = fibonacci(n - 2) + fibonacci(n - 1);
-    
+
     return fib;
 }
+
+void printArray(int arr[], int i, int n)
+{
+
+    if (i >= n)
+    {
+        return;
+    }
+
+    // *      method
+    // printArray(arr, i++, n - 1);
+    // cout << arr[n-1]<<" ";
+
+    //* method  2
+
+    cout << arr[i] << " ";
+    // ?      error         printArray(arr, i++, n);
+    // *         printArray(arr, ++i, n);
+    printArray(arr, i + 1, n);
+}
+
+int maximumElement1(int arr[], int i, int n)
+{
+
+    if (i >= n)
+    {
+        return INT_MIN;
+    }
+
+    // int maxi = INT_MIN;
+    int element = arr[i];
+
+    return max(element, maximumElement1(arr, i + 1, n));
+}
+
+void maximumElement(int arr[], int i, int n, int &maxi)
+{
+    if (i >= n)
+    {
+        return;
+    }
+
+    if (arr[i] > maxi)
+    {
+        maxi = arr[i];
+    }
+
+    maximumElement(arr, i + 1, n, maxi);
+}
+
+void minimumElement(int arr[], int i, int n, int &mini)
+{
+
+    if (i >= n)
+    {
+
+        return;
+    }
+
+    // if (arr[i] < mini)
+    // {
+
+    //     mini = arr[i];
+    // }
+    mini = min(mini, arr[i]);
+    minimumElement(arr, i + 1, n, mini);
+}
+
+bool findChar(string s, int i, int n, char key)
+{
+    if (i >= n)
+    {
+        return false;
+        // return -1;    //*  if we have to return index
+    }
+
+    if (s[i] == key)
+    {
+        return true;
+        // return i;    //*  if we have to return index
+    }
+
+    return findChar(s, i + 1, n, key);
+}
+
+void allIndexOfFounrChar(string s, int i, int n, char key, vector<int>& v)
+{
+
+    if (i >= n)
+    {
+        return;
+    }
+    if (s[i] == key)
+    {
+        v.push_back(i);
+    }
+
+    return allIndexOfFounrChar(s, i + 1, n, key, v);
+}
+
+
+
 
 int main()
 {
 
     int n;
-    cin >> n;
+    // cin >> n;
     // cout<<Factorial(n);
 
     // PrintCounting(n);
@@ -97,8 +201,33 @@ int main()
     //    cout<< Power(n,5);
     // cout << SumOfDigits(n);
 
-    int a = fibonacci(n);
+    // int a = fibonacci(n);
 
-    cout<<a;
+    // cout<<a;
+
+    // int arr[6] = {1, 778, -5, 5, 78, 9};
+    // printArray(arr, 0, 6);
+    // int maxi=INT_MIN;
+    //    maximumElement(arr, 0, 6,maxi);
+
+    //     cout<<maxi;
+
+    // int mini = INT_MAX;
+    // minimumElement(arr, 0, 6, mini);
+    // cout << mini;
+
+    string s = "vipin kumawat";
+
+    char c;
+    cin >> c;
+    // cout<<findChar(s,0,s.length(),c);
+
+    vector<int> v;
+    allIndexOfFounrChar(s, 0, s.length(), c, v);
+
+    for (auto i : v)
+    {
+        cout << i << " ";
+    }
     return 0;
 }
