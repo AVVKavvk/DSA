@@ -171,7 +171,7 @@ bool findChar(string s, int i, int n, char key)
     return findChar(s, i + 1, n, key);
 }
 
-void allIndexOfFounrChar(string s, int i, int n, char key, vector<int>& v)
+void allIndexOfFounrChar(string s, int i, int n, char key, vector<int> &v, int &count)
 {
 
     if (i >= n)
@@ -181,9 +181,40 @@ void allIndexOfFounrChar(string s, int i, int n, char key, vector<int>& v)
     if (s[i] == key)
     {
         v.push_back(i);
+        count++;
     }
 
-    return allIndexOfFounrChar(s, i + 1, n, key, v);
+    allIndexOfFounrChar(s, i + 1, n, key, v, count);
+}
+
+void printAllDigitOfNumber(int n, vector<int> &v)
+{
+
+    if (n <= 0)
+    {
+        return;
+    }
+
+    int digit = n % 10;
+    // cout<<digit<<" ";
+    n /= 10;
+    printAllDigitOfNumber(n, v);
+    v.push_back(digit);
+}
+
+bool isArraySorted(int arr[], int i, int n)
+{
+    if (i == n - 1)
+    {
+        return true;
+    }
+
+    if (arr[i] > arr[i + 1])
+    {
+        return false;
+    }
+
+    return isArraySorted(arr, i + 1, n);
 }
 
 
@@ -192,7 +223,7 @@ void allIndexOfFounrChar(string s, int i, int n, char key, vector<int>& v)
 int main()
 {
 
-    int n;
+    // int n;
     // cin >> n;
     // cout<<Factorial(n);
 
@@ -216,18 +247,40 @@ int main()
     // minimumElement(arr, 0, 6, mini);
     // cout << mini;
 
-    string s = "vipin kumawat";
+    // string s = "vipin kumawat";
 
-    char c;
-    cin >> c;
+    // char c;
+    // cin >> c;
     // cout<<findChar(s,0,s.length(),c);
 
-    vector<int> v;
-    allIndexOfFounrChar(s, 0, s.length(), c, v);
+    // vector<int> v;
 
-    for (auto i : v)
-    {
-        cout << i << " ";
-    }
+    // int count = 0;
+    // allIndexOfFounrChar(s, 0, s.length(), c, v, count);
+    // cout << "count of key is: "<<count;
+    // nl;
+    // for (auto i : v)
+    // {
+    //     cout << i << " ";
+    // }
+
+    // int n;
+    // cin >> n;
+
+    // vector<int> v;
+    // if(n==0){
+    //     cout<<0<<" ";
+    // }
+    // printAllDigitOfNumber(n,v);
+    // for(auto i:v){
+    //     cout<<i<<" ";
+    // }
+
+    // int n = 0647;
+    // cout << n;
+
+    int arr[] = {1, 2, 4, 5, 7, 8};
+    cout << isArraySorted(arr, 0, 6);
+
     return 0;
 }
