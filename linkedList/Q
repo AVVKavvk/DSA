@@ -1,10 +1,14 @@
 lc
 
 2
+21
 25
+61
 83
 141
 142
+148
+160
 206
 876
 
@@ -15,3 +19,5 @@ gfg
 check if given ll is circular
 
 sort 0,1,2
+
+flattening linkedlist
