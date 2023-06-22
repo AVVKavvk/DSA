@@ -11,7 +11,8 @@ lc
 160
 206
 876
-
+2058
+2181
 
 
 gfg
@@ -21,3 +22,5 @@ check if given ll is circular
 sort 0,1,2
 
 flattening linkedlist
+
+delete N nodes after skipping M nodes
