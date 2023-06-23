@@ -108,19 +108,65 @@ void print(Stack *s)
 
     nl;
 }
+
+
+
+//*      using vector
+
+class Stack1
+{
+
+public:
+    vector<int> arr;
+
+    void push(int data)
+    {
+        arr.push_back(data);
+    }
+
+    void pop()
+    {
+        arr.pop_back();
+    }
+    int size()
+    {
+        return arr.size();
+    }
+    int top()
+    {
+        return arr.back();
+    }
+    bool isEmpty()
+    {
+        return arr.empty();
+    }
+};
+
+void print1(Stack1 s)
+{
+    while (!s.isEmpty())
+    {
+        cout << s.top() << " ";
+        s.pop();
+    }
+
+    nl;
+}
+
 int main()
 {
 
-    Stack *s = new Stack(6);
+    Stack1 s;
 
-    s->push(10);
-    s->push(20);
-    s->push(30);
-    s->push(40);
-    s->push(50);
-    s->push(60);
-    // s->push(60);
-    print(s);
+    s.push(10);
+    s.push(20);
+    s.push(30);
+    s.push(40);
+    s.push(50);
+    s.push(60);
+    // s.push(60);
+    s.pop();
+    print1(s);
 
     return 0;
 }

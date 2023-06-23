@@ -173,7 +173,12 @@ int main()
     insertAtPosition(head, tail, 60, 5);
     printLL(head);
     nl;
-    cout << tail->data;
+       cout<<head->data<<endl;
+       cout << tail->data<<endl;
+    swap(head->data,tail->data);
+
+    cout<<head->data<<endl;
+       cout << tail->data<<endl;
 
     return 0;
 }
