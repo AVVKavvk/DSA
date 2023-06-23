@@ -21,7 +21,7 @@ using namespace std;
 #define v2ec vector<vector<char>>
 #define vei vector<int>
 #define pu(n) push_back(n);
-
+       
 int main()
 {
   // int *a;
@@ -33,4 +33,4 @@ int main()
   nl;
   cout << p;
   return 0;
-}
+}                                       

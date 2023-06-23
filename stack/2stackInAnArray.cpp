@@ -140,9 +140,9 @@ int main()
     s.pop1();
     s.pop1();
     s.pop1();
-    s.pop2();
+    s.pop2();   
     s.pop2();
     s.print();
 
     return 0;
-}
+} 
