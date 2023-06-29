@@ -24,6 +24,7 @@ using namespace std;
 
 class Node
 {
+
 public:
     int data;
     Node *left;
@@ -39,8 +40,9 @@ public:
 
 Node *insertIntoBST(Node *&root, int data)
 {
+
     if (root == NULL)
-    { //* first node or create a node
+    {
         root = new Node(data);
         return root;
     }
@@ -58,20 +60,36 @@ Node *insertIntoBST(Node *&root, int data)
     return root;
 }
 
-void inOrderTraversal(Node *&root)
-{ //?    L N R
+void InorderTracersal(Node *root)
+{
     if (root == NULL)
         return;
 
-    inOrderTraversal(root->left);
-    cout << root->data << ' ';
-    inOrderTraversal(root->right);
+    InorderTracersal(root->left);
+    cout << root->data << " ";
+    InorderTracersal(root->right);
+}
+bool InorderSearch(Node *root, int target)
+{
+    if (root == NULL)
+        return false;
+    bool a=false, b=false;
+    if (root->data == target)
+        return true;
+
+    else if (root->data > target)
+        a = InorderSearch(root->left, target);
+    else
+        b = InorderSearch(root->right, target);
+
+    return a || b;
 }
 void takeInput(Node *&root)
 {
     int data;
-    cout << "enter data:" << endl;
+    cout << " enter data" << endl;
     cin >> data;
+
     while (data != -1)
     {
         root = insertIntoBST(root, data);
@@ -82,7 +100,14 @@ int main()
 {
     Node *root = NULL;
     takeInput(root);
+    InorderTracersal(root);
+    cout << endl;
+    cout << "enter target :" << endl;
+    int target;
+    cin >> target;
+    cout << InorderSearch(root, target);
 
-    inOrderTraversal(root);
     return 0;
 }
+
+//  10 20 5 2 30 40 100 120 110 -1
