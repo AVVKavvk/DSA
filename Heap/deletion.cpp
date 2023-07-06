@@ -59,6 +59,35 @@ public:
                 break;
         }
     }
+    
+    int deletion(){
+        int ans=arr[1];
+        arr[1]=arr[i];
+        i--;
+        
+        int index=1;
+        while(index<i){
+            int left=2*index;
+            int right=2*index+1;
+
+            int largest=index;
+
+            if(left<i && arr[largest] < arr[left]) largest=left;
+            if(right<i && arr[largest] <arr[right]) largest=right;
+
+            if(largest==index){
+                break;
+            }
+
+            else{
+                swap(arr[largest],arr[index]);
+                index=largest;
+            }
+        }
+        return ans;
+    }
+
+
 };
 
 main()
@@ -82,6 +111,12 @@ main()
     }
     nl;
     // h->i=6;
+    cout<<"deleted Element: "<<h->deletion()<<endl;
+    for (int i = 0; i <=h->i ; i++)
+    {
+        cout << h->arr[i] << ' ';
+    }
+    nl;
 // h->insert(70);
 // for (int i = 0; i <h->i ; i++)
 //     {

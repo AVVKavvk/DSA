@@ -24,28 +24,27 @@ using namespace std;
 
 class Heap
 {
-
 public:
     int *arr;
     int size;
     int i;
-
     Heap(int _size) : size(_size)
     {
-        arr = new int[size];
         i = 0;
+        arr = new int[size];
     }
 
     void insert(int data)
     {
         if (i == size - 1)
         {
-            cout << "overflow " << endl;
+            cout << "Oberflow " << endl;
             return;
         }
-        i = i + 1;
-        int index = i;
+        i++;
         arr[i] = data;
+
+        int index = i;
 
         while (index > 1)
         {
@@ -56,37 +55,61 @@ public:
                 index = parentIndex;
             }
             else
+            {
                 break;
+            }
+        }
+    }
+
+    void heapify(int *arr, int n, int i)
+    {
+        int index = i;
+        int left = 2 * i;
+        int right = 2 * i + 1;
+        int largest = index;
+
+        if (left < n && arr[largest] < arr[left])
+            largest = left;
+        if (right < n && arr[largest] < arr[right])
+            largest = right;
+
+        if (largest != index)
+        {
+            swap(arr[largest], arr[index]);
+            index = largest;
+            heapify(arr, n, index);
         }
     }
 };
 
-main()
+int main()
 {
     Heap *h = new Heap(10);
     h->arr[0] = -1;
-   h->insert(100);
-   h->insert(40);
-   h->insert(30);
-   h->insert(70);
-   h->insert(50);
-   h->insert(10);
-   h->insert(110);
+    h->insert(100);
+    h->insert(40);
+    h->insert(30);
+    h->insert(70);
+    h->insert(50);
+    h->insert(10);
+    h->insert(110);
 
     // int size = h->i;
     // h->i=5;
 
-    for (int i = 0; i <=h->i ; i++)
+    for (int i = 0; i <= h->i; i++)
     {
         cout << h->arr[i] << ' ';
     }
     nl;
-    // h->i=6;
-// h->insert(70);
-// for (int i = 0; i <h->i ; i++)
-//     {
-//         cout << h->arr[i] << ' ';
-//     }
-//     nl;
+
+    h->heapify(h->arr, h->i, 4);
+
+    for (int i = 0; i <= h->i; i++)
+    {
+        cout << h->arr[i] << ' ';
+    }
+    nl;
+
     return 0;
 }
