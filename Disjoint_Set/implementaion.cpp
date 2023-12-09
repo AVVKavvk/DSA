@@ -25,14 +25,15 @@ using namespace std;
 class DisjointSet
 {
 private:
-    vector<int> parent, rank;
+    vector<int> parent, rank,size;
 
 public:
     DisjointSet(int n)
     {
-        rank.resize(n, 0);
-        parent.resize(n);
-        for (int i = 0; i < n; i++)
+        rank.resize(n+1, 0);
+        parent.resize(n+1);
+        size.resize(n+1,1);
+        for (int i = 0; i <= n; i++)
         {
             parent[i] = i;
         }
@@ -66,22 +67,38 @@ public:
             rank[ulp_u]++;
         }
     }
+    
+    void unionBySize(int u,int v){
+        int ulp_u=findUPar(u);
+        int ulp_v=findUPar(v);
+
+        if(ulp_v==ulp_u) return;
+        if(size[ulp_u]<size[ulp_v]){
+            size[ulp_v]+=size[ulp_u];
+            parent[ulp_u]=ulp_v;
+        }
+        else {
+            size[ulp_u]+=size[ulp_v];
+            parent[ulp_v]=ulp_u;
+        }
+    }
+
 };
 
 int main()
 {
     DisjointSet d(7);
-    d.unionByRank(1, 2);
-    d.unionByRank(2, 3);
-    d.unionByRank(4, 5);
-    d.unionByRank(6, 7);
-    d.unionByRank(5, 6);
+    d.unionBySize(1, 2);
+    d.unionBySize(2, 3);
+    d.unionBySize(4, 5);
+    d.unionBySize(6, 7);
+    d.unionBySize(5, 6);
     if (d.findUPar(3) == d.findUPar(6))
         cout << "same\n";
     else
         cout << "different\n";
 
-    d.unionByRank(3, 7);
+    d.unionBySize(3, 7);
     if (d.findUPar(3) == d.findUPar(6))
         cout << "same\n";
     else
