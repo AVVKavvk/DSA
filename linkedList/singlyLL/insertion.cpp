@@ -167,18 +167,18 @@ int main()
     // insertAtTail(head, tail, 40);
     // insertAtTail(head, tail, 50);
     printLL(head);
-    nl;
+    // nl;
+    // // insertAtPosition(head, tail, 60, 5);
+    // // insertAtPosition(head, tail, 60, 0);
     // insertAtPosition(head, tail, 60, 5);
-    // insertAtPosition(head, tail, 60, 0);
-    insertAtPosition(head, tail, 60, 5);
-    printLL(head);
-    nl;
-       cout<<head->data<<endl;
-       cout << tail->data<<endl;
-    swap(head->data,tail->data);
+    // printLL(head);
+    // nl;
+    //    cout<<head->data<<endl;
+    //    cout << tail->data<<endl;
+    // swap(head->data,tail->data);
 
-    cout<<head->data<<endl;
-       cout << tail->data<<endl;
+    // cout<<head->data<<endl;
+    //    cout << tail->data<<endl;
 
     return 0;
 }

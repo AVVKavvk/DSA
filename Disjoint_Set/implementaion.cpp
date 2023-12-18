@@ -24,84 +24,84 @@ using namespace std;
 
 class DisjointSet
 {
-private:
-    vector<int> parent, rank,size;
-
 public:
+    vector<int> parent, size, rank;
     DisjointSet(int n)
     {
-        rank.resize(n+1, 0);
-        parent.resize(n+1);
-        size.resize(n+1,1);
-        for (int i = 0; i <= n; i++)
+        parent.resize(n + 1, 0);
+        size.resize(n + 1, 1);
+        rank.resize(n + 1, 0);
+        for (int i = 0; i < n + 1; i++)
         {
             parent[i] = i;
         }
     }
 
-    int findUPar(int node)
+    int findUpar(int node)
     {
         if (node == parent[node])
             return node;
-        return parent[node] = findUPar(parent[node]);
+        return parent[node] = findUpar(parent[node]);
     }
-    void unionByRank(int u, int v)
-    {
-        int ulp_u = findUPar(u);
-        int ulp_v = findUPar(v);
 
-        if (ulp_u == ulp_v)
-            return;
+    void unionBySize(int u, int v) {
+        int ulp_u = findUpar(u);
+        int ulp_v = findUpar(v);
+        if (ulp_u == ulp_v) return;
+        if (size[ulp_u] < size[ulp_v]) {
+            parent[ulp_u] = ulp_v;
+            size[ulp_v] += size[ulp_u];
+        }
+        else {
+            parent[ulp_v] = ulp_u;
+            size[ulp_u] += size[ulp_v];
+        }
+    }
 
-        if (rank[ulp_u] < rank[ulp_v])
-        {
+    void unionByRank(int u, int v) {
+        int ulp_u = findUpar(u);
+        int ulp_v = findUpar(v);
+        if (ulp_u == ulp_v) return;
+        if (rank[ulp_u] < rank[ulp_v]) {
             parent[ulp_u] = ulp_v;
         }
-        else if (rank[ulp_v] < rank[ulp_u])
-        {
+        else if (rank[ulp_v] < rank[ulp_u]) {
             parent[ulp_v] = ulp_u;
         }
-        else
-        {
+        else {
             parent[ulp_v] = ulp_u;
             rank[ulp_u]++;
         }
     }
-    
-    void unionBySize(int u,int v){
-        int ulp_u=findUPar(u);
-        int ulp_v=findUPar(v);
-
-        if(ulp_v==ulp_u) return;
-        if(size[ulp_u]<size[ulp_v]){
-            size[ulp_v]+=size[ulp_u];
-            parent[ulp_u]=ulp_v;
-        }
-        else {
-            size[ulp_u]+=size[ulp_v];
-            parent[ulp_v]=ulp_u;
-        }
-    }
-
 };
-
 int main()
 {
-    DisjointSet d(7);
-    d.unionBySize(1, 2);
-    d.unionBySize(2, 3);
-    d.unionBySize(4, 5);
-    d.unionBySize(6, 7);
-    d.unionBySize(5, 6);
-    if (d.findUPar(3) == d.findUPar(6))
-        cout << "same\n";
-    else
-        cout << "different\n";
 
-    d.unionBySize(3, 7);
-    if (d.findUPar(3) == d.findUPar(6))
+    DisjointSet ds(7);
+    ds.unionBySize(0, 1);
+    ds.unionBySize(1, 2);
+    ds.unionBySize(2, 3);
+    ds.unionBySize(4, 5);
+    ds.unionBySize(6, 7);
+    ds.unionBySize(5, 6);
+
+    if (ds.findUpar(3) == ds.findUpar(7))
+    {
         cout << "same\n";
+    }
     else
+    {
         cout << "different\n";
+    }
+    ds.unionBySize(3, 7);
+    if (ds.findUpar(3) == ds.findUpar(7))
+    {
+        cout << "same\n";
+    }
+    else
+    {
+        cout << "different\n";
+    }
+
     return 0;
 }

@@ -57,6 +57,7 @@ void print(Node *&head)
         temp = temp->next;
     }
 }
+
 void insertAtTail(Node *&head, Node *&tail, int data)
 {
 
@@ -72,6 +73,7 @@ void insertAtTail(Node *&head, Node *&tail, int data)
     tail->next = newNode;
     tail = newNode;
 }
+
 void deleteHead(Node *&head)
 {
     if (head == NULL)
@@ -150,7 +152,7 @@ int main()
     nl;
     // cout << length(head);
     // deleteHead(head);
-    deleteAtPosition(head, tail, 4);
+    deleteAtPosition(head, tail, 0);
     // deleteAtPosition(head, tail, 5);
     print(head);
     nl;
