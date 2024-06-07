@@ -22,14 +22,14 @@ using namespace std;
 #define vei vector<int>
 #define pu(n) push_back(n);
 
-class Trie
+class TrieNode
 {
 public:
     char data;
     bool isTerminal;
-    Trie *children[26];
+    TrieNode *children[26];
 
-    Trie(int data)
+    TrieNode(int data)
     {
         this->data = data;
         isTerminal = false;
@@ -40,7 +40,7 @@ public:
     }
 };
 
-void insert(Trie *&root, string word)
+void insert(TrieNode *&root, string word)
 {
     // cout << word << endl;
     if (word.size() == 0)
@@ -50,11 +50,11 @@ void insert(Trie *&root, string word)
     }
     char ch = word[0];
     int index = ch - 'a';
-    Trie *child = root->children[index];
+    TrieNode *child = root->children[index];
 
     if (child == NULL)
     {
-        child = new Trie(ch);
+        child = new TrieNode(ch);
         root->children[index] = child;
     }
     else
@@ -64,7 +64,7 @@ void insert(Trie *&root, string word)
     insert(child, word.substr(1));
 }
 
-bool search(Trie *root, string word)
+bool search(TrieNode *root, string word)
 {
     if (word.size() == 0)
     {
@@ -72,7 +72,7 @@ bool search(Trie *root, string word)
     }
     char ch = word[0];
     int index = ch - 'a';
-    Trie *child = root->children[index];
+    TrieNode *child = root->children[index];
     if (child != NULL)
     {
         child = root->children[index];
@@ -82,7 +82,7 @@ bool search(Trie *root, string word)
     return search(child, word.substr(1));
 }
 
-void remove(Trie *&root, string word)
+void remove(TrieNode *&root, string word)
 {
     if (word.size() == 0)
     {
@@ -91,7 +91,7 @@ void remove(Trie *&root, string word)
     }
     char ch = word[0];
     int index = ch - 'a';
-    Trie *child = root->children[index];
+    TrieNode *child = root->children[index];
     if (child != NULL)
     {
         child = root->children[index];
@@ -102,7 +102,7 @@ void remove(Trie *&root, string word)
 }
 int main()
 {
-    Trie *root = new Trie('-');
+    TrieNode *root = new TrieNode('-');
     insert(root, "vipin");
     insert(root, "vip");
     insert(root, "kumawat");

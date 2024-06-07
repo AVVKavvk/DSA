@@ -22,34 +22,34 @@ using namespace std;
 #define vei vector<int>
 #define pu(n) push_back(n);
 
-class Node
+class ListNode
 {
 
 public:
     int data;
-    Node *next;
+    ListNode *next;
 
-    Node()
+    ListNode()
     {
         this->data = 0;
         this->next = NULL;
     }
-    Node(int data)
+    ListNode(int data)
     {
         this->data = data;
         this->next = NULL;
     }
 
-    ~Node()
+    ~ListNode()
     {
         delete next;
         cout << "deleting " << endl;
     }
 };
 
-void print(Node *&head)
+void print(ListNode *&head)
 {
-    Node *temp = head;
+    ListNode *temp = head;
 
     while (temp != NULL)
     {
@@ -58,10 +58,10 @@ void print(Node *&head)
     }
 }
 
-void insertAtTail(Node *&head, Node *&tail, int data)
+void insertAtTail(ListNode *&head, ListNode *&tail, int data)
 {
 
-    Node *newNode = new Node(data);
+    ListNode *newNode = new ListNode(data);
     if (head == NULL)
     {
 
@@ -74,13 +74,13 @@ void insertAtTail(Node *&head, Node *&tail, int data)
     tail = newNode;
 }
 
-void deleteHead(Node *&head)
+void deleteHead(ListNode *&head)
 {
     if (head == NULL)
     {
         return;
     }
-    Node *temp = head;
+    ListNode *temp = head;
 
     head = head->next;
     temp->next = NULL;
@@ -88,10 +88,10 @@ void deleteHead(Node *&head)
     // free(temp);
 }
 
-int length(Node *&head)
+int length(ListNode *&head)
 {
     int len = 0;
-    Node *temp = head;
+    ListNode *temp = head;
     while (temp != NULL)
     {
         len++;
@@ -101,7 +101,7 @@ int length(Node *&head)
     return len;
 }
 
-void deleteAtPosition(Node *&head, Node *&tail, int position)
+void deleteAtPosition(ListNode *&head, ListNode *&tail, int position)
 {
 
     if (head == NULL)
@@ -120,14 +120,15 @@ void deleteAtPosition(Node *&head, Node *&tail, int position)
         cout << "out of bound " << endl;
         return;
     }
-    Node *temp = head;
+    ListNode *temp = head;
     while (position != 1)
     {
 
         temp = temp->next;
         position = position - 1;
     }
-    Node *deleteNode = temp->next;
+    
+    ListNode *deleteNode = temp->next;
     if (temp->next->next == NULL)
     {
         tail = temp;
@@ -141,8 +142,8 @@ void deleteAtPosition(Node *&head, Node *&tail, int position)
 int main()
 {
 
-    Node *head = NULL;
-    Node *tail = head;
+    ListNode *head = NULL;
+    ListNode *tail = head;
     insertAtTail(head, tail, 10);
     insertAtTail(head, tail, 20);
     insertAtTail(head, tail, 30);
